@@ -1,0 +1,34 @@
+{
+    "presets": [
+        "@babel/preset-env",
+        "@babel/preset-react"
+    ],
+    "plugins": [
+        ["@babel/plugin-proposal-class-properties", { "loose": true }],
+        "@babel/plugin-proposal-export-default-from",
+        "@babel/plugin-syntax-dynamic-import",
+        "@babel/plugin-proposal-optional-chaining"
+    ],
+    "env": {
+        "test": {
+            "presets": [
+                "jest",
+                [
+                    "@babel/preset-env",
+                {
+                    "modules": "commonjs",
+                    "targets": {
+                        "node": "current",
+                        "esmodules": false
+                    }
+                }]
+            ]
+        },
+        "development": {
+            "plugins": []
+        },
+        "production": {
+            "presets": ["preset-minify"]
+        }
+    }
+}

@@ -1,0 +1,115 @@
+{
+  "name": "pohodnik58",
+  "version": "1.0.2",
+  "description": "pohodnik58 site",
+  "main": "index.html",
+  "scripts": {
+    "dev": "webpack-dev-server --mode development --open --hot",
+    "start": "webpack --mode development",
+    "start:watch": "webpack --mode development --watch",
+    "build": "webpack --mode production",
+    "deploy": "yarn build & node ./scripts/ftpDeploy",
+    "test": "jest --colors",
+    "test:watch": "jest --watch --colors",
+    "eslint": "eslint src/**/*.js --quiet",
+    "eslint:fix": "eslint src/**/*.js --quiet --fix",
+    "stylelint": "stylelint src/**/*.less --quiet --color --syntax less",
+    "stylelint:fix": "stylelint src/**/*.less --quiet --color --syntax less --fix",
+    "jsdoc": "documentation build src/**/*.js -f md --config docs/documentation.yml -o docs/docs.md --document-exported",
+    "jsdoc:lint": "documentation lint src/**/*.js"
+  },
+  "lint-staged": {
+    "*.js": [
+      "yarn jsdoc:lint",
+      "yarn jsdoc",
+      "git add"
+    ],
+    "*.less": [
+      "yarn stylelint:fix",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn test && yarn eslint && yarn stylelint && yarn jsdoc"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pohodnik58/pohodnik58.git"
+  },
+  "keywords": [
+    "hiking",
+    "backpacking",
+    "tracking",
+    "travel",
+    "nature",
+    "outdoor"
+  ],
+  "author": "Nikolay Fedoseev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pohodnik58/pohodnik58/issues"
+  },
+  "homepage": "https://github.com/pohodnik58/pohodnik58#readme",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-export-default-from": "^7.5.2",
+    "@babel/plugin-proposal-optional-chaining": "^7.2.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "autoprefixer": "^9.6.1",
+    "babel-eslint": "^10.0.3",
+    "babel-jest": "^24.9.0",
+    "babel-loader": "^8.0.6",
+    "babel-preset-minify": "^0.5.1",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.2.0",
+    "documentation": "^12.1.1",
+    "eslint": "^6.3.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-import-resolver-webpack": "^0.11.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^22.17.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "file-loader": "^4.2.0",
+    "ftp-deploy": "^2.3.3",
+    "html-webpack-plugin": "^3.2.0",
+    "husky": "^3.0.5",
+    "image-webpack-loader": "^6.0.0",
+    "incstr": "^1.2.3",
+    "jest": "^24.9.0",
+    "less": "^3.10.3",
+    "less-loader": "^5.0.0",
+    "less-plugin-clean-css": "^1.5.1",
+    "lint-staged": "^9.2.5",
+    "mini-css-extract-plugin": "^0.8.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "postcss-flexbugs-fixes": "^4.1.0",
+    "postcss-loader": "^3.0.0",
+    "prop-types": "^15.7.2",
+    "style-loader": "^1.0.0",
+    "stylelint": "^10.1.0",
+    "stylelint-config-airbnb": "^0.0.0",
+    "stylelint-order": "^3.1.0",
+    "stylelint-scss": "^3.10.1",
+    "terser-webpack-plugin": "^1.4.1",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.8.0",
+    "webpack-pwa-manifest": "^4.0.0"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.9.5",
+    "@material-ui/icons": "^4.9.1",
+    "query-string": "^6.11.1",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-router-dom": "^5.0.1"
+  }
+}
